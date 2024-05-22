@@ -1,0 +1,38 @@
+[
+  {
+    "title": "1999 Pokemon Game 1st Edition Charizard - Holo #4",
+    "price": 3565.17,
+    "change": 0.265,
+    "image": "image_1"
+  },
+  {
+    "title": "1999 Pokemon Game 1st Edition Mewtwo #10",
+    "price": 293.99,
+    "change": -0.027,
+    "image": "image_2"
+  },
+  {
+    "title": "1999 Pokemon Game 1st Edition Pikachu #10",
+    "price": 3565.17,
+    "change": -0.021,
+    "image": "image_3"
+  },
+  {
+    "title": "1999 Pokemon Game 1st Edition Blastoise #2",
+    "price": 531.7,
+    "change": 0.072,
+    "image": "image_4"
+  },
+  {
+    "title": "1999 Pokemon Game 1st Edition Charizard - Holo #5",
+    "price": 3565.17,
+    "change": 0.265,
+    "image": "image_1"
+  },
+  {
+    "title": "1999 Pokemon Game 1st Edition Mewtwo #11",
+    "price": 293.99,
+    "change": -0.027,
+    "image": "image_2"
+  }
+]
