@@ -3,6 +3,7 @@ import {
   ImageSourcePropType,
   Pressable,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { StaticText, ThemedText } from "./ThemedText";
@@ -13,6 +14,7 @@ interface DetailListItemProps {
   title: string;
   price: number;
   change: number;
+  onPress: () => void;
 }
 
 export function DetailListItem({
@@ -21,6 +23,7 @@ export function DetailListItem({
   title,
   price,
   change,
+  onPress,
   ...rest
 }: DetailListItemProps) {
   let USDollar = new Intl.NumberFormat("en-US", {
@@ -32,13 +35,7 @@ export function DetailListItem({
   let removedChange = formattedChange.toString().replace("-", "");
 
   return (
-    <Pressable
-      style={({ pressed }) => [
-        { opacity: pressed ? 0.5 : 1 },
-        styles.container,
-      ]}
-      {...rest}
-    >
+    <TouchableOpacity style={styles.container} onPress={onPress} {...rest}>
       <Image style={styles.image} source={image}></Image>
       <View style={styles.info}>
         <ThemedText type="eyebrow" lightColor="#6C6E6F">
@@ -79,7 +76,7 @@ export function DetailListItem({
           </View>
         </View>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 

@@ -21,7 +21,7 @@ export default function TabLayout() {
         options={{
           title: "Camera",
           href: null,
-          header: () => <Header title="Camera" tabs={false} />,
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name="home" color={color} />
           ),

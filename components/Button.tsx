@@ -15,6 +15,7 @@ import { Theme, useTheme } from "@react-navigation/native";
 interface ButtonProps {
   variant?: "primary" | "secondary";
   size?: "large" | "medium";
+  onPress?: any;
   children: React.ReactNode;
 }
 
@@ -22,6 +23,7 @@ export function Button({
   variant = "primary",
   size = "large",
   children,
+  onPress,
   ...rest
 }: ButtonProps) {
   const theme = useTheme();
@@ -35,6 +37,7 @@ export function Button({
         size === "large" ? styles.large : undefined,
         size === "medium" ? styles.medium : undefined,
       ]}
+      onPress={onPress}
       {...rest}
     >
       <StaticText

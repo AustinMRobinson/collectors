@@ -10,6 +10,19 @@ export const TabBar = ({
   navigation,
   ...rest
 }: BottomTabBarProps) => {
+  const icons: any = {
+    default: {
+      Orders: require("@/assets/images/orders.png"),
+      Camera: require("@/assets/images/scan-camera.png"),
+      Collection: require("@/assets/images/collection.png"),
+    },
+    active: {
+      Orders: require("@/assets/images/orders-active.png"),
+      Camera: require("@/assets/images/scan-camera.png"),
+      Collection: require("@/assets/images/collection-active.png"),
+    },
+  };
+
   return (
     <SafeAreaView
       edges={["bottom", "left", "right"]}
@@ -72,7 +85,11 @@ export const TabBar = ({
                 width={32}
                 height={32}
                 style={{ width: 32, height: 32 }}
-                source={require("@/assets/images/icon.png")}
+                source={
+                  isFocused
+                    ? icons.active[options.title!]
+                    : icons.default[options.title!]
+                }
               />
               {options.title !== "Camera" && (
                 <ThemedText type="footnote">{label as any}</ThemedText>

@@ -3,6 +3,7 @@ import {
   ImageSourcePropType,
   Pressable,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -81,3 +82,45 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5F5",
   },
 });
+
+interface ListButtonProps {
+  title: string;
+  onPress?: () => void;
+}
+
+export function ListButton({ title, onPress }: ListButtonProps) {
+  return (
+    <TouchableOpacity
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        gap: 16,
+        paddingVertical: 8,
+        paddingLeft: 16,
+        paddingRight: 12,
+      }}
+      onPress={onPress}
+    >
+      <ThemedText type="link" style={{ flexGrow: 1 }}>
+        {title}
+      </ThemedText>
+      <View
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 24,
+          height: 24,
+          borderRadius: 12,
+          backgroundColor: "#F5F5F5",
+        }}
+      >
+        <Image
+          width={16}
+          height={16}
+          source={require("@/assets/images/chevron.png")}
+        />
+      </View>
+    </TouchableOpacity>
+  );
+}

@@ -38,6 +38,14 @@
             "./assets/fonts/AreaNormal-Black.otf"
           ]
         }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Collectors to access your camera",
+          "microphonePermission": "Allow Collectors to access your microphone",
+          "recordAudioAndroid": true
+        }
       ]
     ],
     "experiments": {
