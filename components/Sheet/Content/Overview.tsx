@@ -37,7 +37,7 @@ export default function Overview({ image, title, game }: OverviewProps) {
         </ThemedText>
         <ThemedText
           type="bodyLabel"
-          lightColor="#6C6E6F"
+          color="tertiary"
           style={{ textAlign: "center" }}
         >
           1999 Pokemon Game 1st Edition

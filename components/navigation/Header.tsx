@@ -3,26 +3,29 @@ import {
   ImageSourcePropType,
   Pressable,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from "react-native";
-import { StaticText, ThemedText } from "./ThemedText";
+import { ThemedText } from "../ThemedText";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { setStatusBarStyle } from "expo-status-bar";
+import Icon from "../Icon/Icon";
+import { IconRegistry } from "@/types";
 
 interface HeaderButtonProps {
-  image: ImageSourcePropType;
+  image?: ImageSourcePropType;
+  icon?: IconRegistry;
 }
 
-function HeaderButton({ image }: HeaderButtonProps) {
+function HeaderButton({ image, icon }: HeaderButtonProps) {
   return (
-    <Pressable
-      style={({ pressed }) => [
-        { opacity: pressed ? 0.5 : 1 },
-        styles.headerButton,
-      ]}
-    >
-      <Image width={28} height={28} source={image} />
-    </Pressable>
+    <TouchableOpacity style={styles.headerButton}>
+      {image ? (
+        <Image width={28} height={28} source={image} />
+      ) : (
+        <Icon name={icon!} size={32} color="#FFF" />
+      )}
+    </TouchableOpacity>
   );
 }
 
@@ -56,27 +59,23 @@ export default function Header({ title, tabs }: HeaderProps) {
         </View>
         <ThemedText style={styles.headerTitle}>{title ?? title}</ThemedText>
         <View style={styles.buttonWrapper}>
-          <HeaderButton image={require("@/assets/images/search.png")} />
+          <HeaderButton icon="search" />
         </View>
       </View>
       {tabs && (
         <View style={styles.tabs}>
           {Tabs.map((tab) => (
-            <Pressable
+            <TouchableOpacity
               key={tab.title}
-              style={({ pressed }) => [
-                { opacity: pressed ? 0.5 : 1 },
-                tab.active ? styles.tabActive : undefined,
-                styles.tab,
-              ]}
+              style={[tab.active ? styles.tabActive : undefined, styles.tab]}
             >
-              <StaticText
+              <ThemedText
                 type="captionLabel"
                 style={{ color: tab.active ? "#EB1C2D" : "#FFF" }}
               >
                 {tab.title}
-              </StaticText>
-            </Pressable>
+              </ThemedText>
+            </TouchableOpacity>
           ))}
         </View>
       )}
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   buttonWrapper: {
-    minWidth: 28,
+    width: 32,
   },
   header: {
     margin: 0,

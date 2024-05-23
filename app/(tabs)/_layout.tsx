@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/navigation/Header";
 import { TabBar } from "@/components/navigation/TabBar";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";

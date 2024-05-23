@@ -1,10 +1,9 @@
 import { Text, type TextProps, StyleSheet } from "react-native";
 
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { useTheme } from "@react-navigation/native";
 
 export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
+  color?: "primary" | "secondary" | "tertiary" | "invert";
   type?:
     | "title"
     | "headline"
@@ -18,42 +17,37 @@ export type ThemedTextProps = TextProps & {
 };
 
 export function ThemedText({
-  style,
-  lightColor,
-  darkColor,
-  type = "default",
-  ...rest
-}: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
-
-  return (
-    <Text
-      style={[
-        { color },
-        type === "title" ? styles.title : undefined,
-        type === "headline" ? styles.headline : undefined,
-        type === "default" ? styles.body : undefined,
-        type === "bodyLabel" ? styles.bodyLabel : undefined,
-        type === "caption" ? styles.caption : undefined,
-        type === "captionLabel" ? styles.captionLabel : undefined,
-        type === "footnote" ? styles.footnote : undefined,
-        type === "eyebrow" ? styles.eyebrow : undefined,
-        type === "link" ? styles.link : undefined,
-        style,
-      ]}
-      {...rest}
-    />
-  );
-}
-
-export function StaticText({
+  color,
   style,
   type = "default",
   ...rest
 }: ThemedTextProps) {
+  const { colors } = useTheme();
+
+  let textColor;
+
+  switch (color) {
+    case "primary":
+      textColor = colors.textPrimary;
+      break;
+    case "secondary":
+      textColor = colors.textSecondary;
+      break;
+    case "tertiary":
+      textColor = colors.textTertiary;
+      break;
+    case "invert":
+      textColor = colors.textInvert;
+      break;
+    default:
+      textColor = colors.text;
+      break;
+  }
+
   return (
     <Text
       style={[
+        { color: textColor },
         type === "title" ? styles.title : undefined,
         type === "headline" ? styles.headline : undefined,
         type === "default" ? styles.body : undefined,

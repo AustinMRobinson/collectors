@@ -135,6 +135,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
           >
             {["2W", "1M", "3M", "6M", "1Y", "ALL"].map((item) => (
               <TouchableOpacity
+                key={item}
                 onPress={() => setRange(item)}
                 style={{
                   display: "flex",

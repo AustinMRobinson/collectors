@@ -10,9 +10,9 @@
 
 ### Day 2 (2 hrs)
 
-- [ ] SVG icons
-- [ ] Elements persisting between views
+- [x] SVG icons
 - [ ] Dark mode
+- [ ] Elements persisting between views
 - [ ] Sticky header - title & card going to top, tap to go back to top
 
 ### Day 3 (if time permits)

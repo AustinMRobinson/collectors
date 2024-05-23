@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { StaticText, ThemedText } from "./ThemedText";
+import { ThemedText } from "./ThemedText";
+import Icon from "./Icon/Icon";
 
 interface DetailListItemProps {
   image?: ImageSourcePropType;
@@ -31,17 +32,18 @@ export function DetailListItem({
     currency: "USD",
   });
 
-  let formattedChange = change * 100;
+  let percentageChange = change * 100;
+  let formattedChange = Math.round(percentageChange * 100) / 100;
   let removedChange = formattedChange.toString().replace("-", "");
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress} {...rest}>
       <Image style={styles.image} source={image}></Image>
       <View style={styles.info}>
-        <ThemedText type="eyebrow" lightColor="#6C6E6F">
+        <ThemedText type="eyebrow" color="tertiary">
           {grade ?? "Ungraded"}
         </ThemedText>
-        <ThemedText type="default" numberOfLines={2}>
+        <ThemedText type="default" numberOfLines={2} color="primary">
           {title}
         </ThemedText>
         <View
@@ -52,7 +54,9 @@ export function DetailListItem({
             gap: 6,
           }}
         >
-          <ThemedText type="headline">{USDollar.format(price)}</ThemedText>
+          <ThemedText type="headline" color="primary">
+            {USDollar.format(price)}
+          </ThemedText>
           <View
             style={{
               display: "flex",
@@ -60,19 +64,17 @@ export function DetailListItem({
               alignItems: "center",
             }}
           >
-            <Image
-              source={
-                change >= 0
-                  ? require("@/assets/images/arrow-up.png")
-                  : require("@/assets/images/arrow-down.png")
-              }
+            <Icon
+              name={change >= 0 ? "arrowUp" : "arrowDown"}
+              size={16}
+              color={change >= 0 ? "#039855" : "#DA2D20"}
             />
-            <StaticText
+            <ThemedText
               type="footnote"
               style={{ color: change >= 0 ? "#039855" : "#DA2D20" }}
             >
               {removedChange}%
-            </StaticText>
+            </ThemedText>
           </View>
         </View>
       </View>

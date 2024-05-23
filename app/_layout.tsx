@@ -4,12 +4,12 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 import { useEffect } from "react";
-import Header from "@/components/Header";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import { ThemeProvider } from "@react-navigation/native";
-import { useColorScheme } from "react-native";
 import { setStatusBarStyle } from "expo-status-bar";
+import { NavigationContainer, ThemeProvider } from "@react-navigation/native";
+import { useColorScheme } from "react-native";
+import { darkTheme, lightTheme } from "@/constants/Colors";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,16 +32,18 @@ export default function RootLayout() {
     return null;
   }
 
-  const colorScheme = useColorScheme();
-
   setStatusBarStyle("light");
+
+  const scheme = useColorScheme();
 
   return (
     <GestureHandlerRootView>
       <BottomSheetModalProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <ThemeProvider value={scheme === "dark" ? darkTheme : lightTheme}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </ThemeProvider>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );

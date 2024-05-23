@@ -3,6 +3,7 @@ import { TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "../ThemedText";
+import Icon from "../Icon/Icon";
 
 export const TabBar = ({
   state,
@@ -12,14 +13,14 @@ export const TabBar = ({
 }: BottomTabBarProps) => {
   const icons: any = {
     default: {
-      Orders: require("@/assets/images/orders.png"),
-      Camera: require("@/assets/images/scan-camera.png"),
-      Collection: require("@/assets/images/collection.png"),
+      Orders: "orders",
+      Camera: "scanCamera",
+      Collection: "collection",
     },
     active: {
-      Orders: require("@/assets/images/orders-active.png"),
-      Camera: require("@/assets/images/scan-camera.png"),
-      Collection: require("@/assets/images/collection-active.png"),
+      Orders: "ordersFilled",
+      Camera: "scanCamera",
+      Collection: "collectionFilled",
     },
   };
 
@@ -81,18 +82,28 @@ export const TabBar = ({
                 styles.tab,
               ]}
             >
-              <Image
-                width={32}
-                height={32}
-                style={{ width: 32, height: 32 }}
-                source={
+              <Icon
+                size={32}
+                name={
                   isFocused
                     ? icons.active[options.title!]
                     : icons.default[options.title!]
                 }
+                color={
+                  options.title !== "Camera"
+                    ? isFocused
+                      ? "#212121"
+                      : "#6C6E6F"
+                    : "#FFF"
+                }
               />
               {options.title !== "Camera" && (
-                <ThemedText type="footnote">{label as any}</ThemedText>
+                <ThemedText
+                  type="footnote"
+                  color={isFocused ? "primary" : "secondary"}
+                >
+                  {label as any}
+                </ThemedText>
               )}
             </TouchableOpacity>
           );
@@ -120,5 +131,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 16,
     borderRadius: 32,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });

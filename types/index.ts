@@ -5,3 +5,16 @@ export type Card = {
   price: number;
   change: number;
 };
+
+export type IconRegistry =
+  | "arrowDown"
+  | "arrowUp"
+  | "chevron"
+  | "collection"
+  | "collectionFilled"
+  | "orders"
+  | "ordersFilled"
+  | "scanCamera"
+  | "search"
+  | "share"
+  | "x";

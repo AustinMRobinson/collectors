@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import { StaticText, ThemedText } from "@/components/ThemedText";
+import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { CameraType, CameraView, useCameraPermissions } from "expo-camera";
 import { setStatusBarStyle } from "expo-status-bar";
@@ -30,9 +30,13 @@ export default function Camera() {
           flexGrow: 1,
         }}
       >
-        <StaticText type="headline" style={{ textAlign: "center" }}>
+        <ThemedText
+          type="headline"
+          color="primary"
+          style={{ textAlign: "center" }}
+        >
           We need your permission to show the camera
-        </StaticText>
+        </ThemedText>
         <Button variant="secondary" size="medium" onPress={requestPermission}>
           Request Permission
         </Button>

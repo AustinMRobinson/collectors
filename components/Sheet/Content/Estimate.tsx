@@ -21,7 +21,7 @@ export default function Estimate() {
             borderColor: "#F5F5F5",
           }}
         />
-        <ThemedText type="eyebrow" lightColor="#6C6E6F">
+        <ThemedText type="eyebrow" color="tertiary">
           Price Estimate
         </ThemedText>
         <View
@@ -49,11 +49,11 @@ export default function Estimate() {
         }}
       >
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow" lightColor="#6C6E6F">
+          <ThemedText type="eyebrow" color="tertiary">
             Ungraded
           </ThemedText>
           <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote" lightColor="#6C6E6F">
+          <ThemedText type="footnote" color="tertiary">
             Current value
           </ThemedText>
         </View>

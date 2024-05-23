@@ -9,6 +9,7 @@ import { useCallback, useRef, useState } from "react";
 import Sheet from "@/components/Sheet/Sheet";
 import { Card } from "@/types";
 import { images } from "@/constants/Images";
+import Icon from "@/components/Icon/Icon";
 
 export default function Index() {
   // sheet ref

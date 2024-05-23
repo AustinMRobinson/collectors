@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { ThemedText } from "@/components/ThemedText";
+import Icon from "./Icon/Icon";
 
 interface ListItemProps {
   image: ImageSourcePropType;
@@ -115,11 +116,7 @@ export function ListButton({ title, onPress }: ListButtonProps) {
           backgroundColor: "#F5F5F5",
         }}
       >
-        <Image
-          width={16}
-          height={16}
-          source={require("@/assets/images/chevron.png")}
-        />
+        <Icon size={16} name="chevron" color="#48494A" />
       </View>
     </TouchableOpacity>
   );
