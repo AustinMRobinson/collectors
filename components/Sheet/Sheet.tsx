@@ -20,6 +20,7 @@ import { ThemedText } from "../ThemedText";
 import { Card } from "@/types";
 import { detailImages, images } from "@/constants/Images";
 import Divider from "../Divider";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export type Ref = BottomSheetModal;
 
@@ -29,6 +30,9 @@ interface Props {
 }
 
 const Sheet = forwardRef<Ref, Props>((props, ref) => {
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
+
   // variables
   const snapPoints = useMemo(() => ["92.5%", "92.5%"], []);
 
@@ -62,9 +66,6 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
     ),
     []
   );
-
-  // const colorScheme = useColorScheme() ?? "light";
-
   const [range, setRange] = useState<String>("2W");
 
   return (
@@ -74,10 +75,12 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
       snapPoints={snapPoints}
       style={styles.sheet}
       enablePanDownToClose={true}
-      handleIndicatorStyle={{ backgroundColor: "#BABABA" }}
-      // backgroundStyle={{
-      //   backgroundColor: colorScheme === "dark" ? "#121212" : "#FFF",
-      // }}
+      handleIndicatorStyle={{
+        backgroundColor: theme.colors.borderSecondary,
+      }}
+      backgroundStyle={{
+        backgroundColor: theme.colors.backgroundSecondary,
+      }}
       backdropComponent={renderBackdrop}
       footerComponent={renderFooter}
     >
@@ -147,10 +150,18 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
                   minHeight: 44,
                   flexBasis: 44,
                   flexGrow: 1,
-                  backgroundColor: range === item ? "#F5F5F5" : "transparent",
+                  backgroundColor:
+                    range === item
+                      ? theme.colors.backgroundTransparent
+                      : "transparent",
                 }}
               >
-                <ThemedText type="captionLabel">{item}</ThemedText>
+                <ThemedText
+                  type="captionLabel"
+                  color={range === item ? "primary" : "secondary"}
+                >
+                  {item}
+                </ThemedText>
               </TouchableOpacity>
             ))}
           </ScrollView>
@@ -239,7 +250,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
   );
 });
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   sheet: {
     shadowColor: "#000",
     shadowOffset: {
@@ -251,8 +262,8 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   footerContainer: {
+    backgroundColor: theme.colors.backgroundSecondary,
     padding: 16,
-    backgroundColor: "#FFF",
     shadowOffset: {
       width: 0,
       height: -4,
@@ -261,6 +272,6 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
   },
-});
+}));
 
 export default Sheet;

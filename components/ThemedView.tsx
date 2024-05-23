@@ -1,18 +1,13 @@
-import { View, type ViewProps } from "react-native";
+import { View } from "react-native";
 
-import { useTheme } from "@react-navigation/native";
+import { useStyles } from "react-native-unistyles";
 
-export type ThemedViewProps = ViewProps & {
-  lightColor?: string;
-  darkColor?: string;
-};
-
-export function ThemedView({ style, ...otherProps }: ThemedViewProps) {
-  const { colors } = useTheme();
+export function ThemedView({ style, ...otherProps }: any) {
+  const { theme } = useStyles();
 
   return (
     <View
-      style={[{ backgroundColor: colors.background }, style]}
+      style={[{ backgroundColor: theme.colors.background }, style]}
       {...otherProps}
     />
   );

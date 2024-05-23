@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface OverviewProps {
   image: ImageSourcePropType;
@@ -8,6 +9,9 @@ interface OverviewProps {
 }
 
 export default function Overview({ image, title, game }: OverviewProps) {
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
+
   return (
     <View>
       <View
@@ -32,7 +36,11 @@ export default function Overview({ image, title, game }: OverviewProps) {
           alignItems: "center",
         }}
       >
-        <ThemedText type="title" style={{ textAlign: "center" }}>
+        <ThemedText
+          type="title"
+          color="primary"
+          style={{ textAlign: "center" }}
+        >
           {title}
         </ThemedText>
         <ThemedText
@@ -47,8 +55,10 @@ export default function Overview({ image, title, game }: OverviewProps) {
   );
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   card: {
+    backgroundColor: theme.colors.backgroundTertiary,
+    borderRadius: 8,
     overflow: "visible",
     shadowColor: "#000",
     shadowOffset: {
@@ -59,4 +69,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 4,
   },
-});
+}));

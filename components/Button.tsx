@@ -1,17 +1,7 @@
-import {
-  Image,
-  ImageSourcePropType,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
+import { TouchableOpacity } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
-import React, { useMemo } from "react";
-import { useTheme } from "@react-navigation/native";
-import { Theme } from "@/constants/Colors";
-import { makeStyles } from "@/hooks/makeStyles";
+import React from "react";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface ButtonProps {
   variant?: "primary" | "secondary";
@@ -27,8 +17,8 @@ export function Button({
   onPress,
   ...rest
 }: ButtonProps) {
-  const theme = useTheme();
-  const styles = useStyles(theme);
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
 
   return (
     <TouchableOpacity
@@ -43,7 +33,7 @@ export function Button({
     >
       <ThemedText
         type="bodyLabel"
-        color={variant === "primary" ? "tertiary" : "primary"}
+        color={variant === "primary" ? "invert" : "primary"}
       >
         {children}
       </ThemedText>
@@ -51,9 +41,9 @@ export function Button({
   );
 }
 
-const useStyles = makeStyles((theme: Theme, props: any) => ({
+const stylesheet = createStyleSheet((theme) => ({
   primary: {
-    backgroundColor: theme.colors.text,
+    backgroundColor: theme.colors.backgroundInvert,
     display: "flex",
     flexDirection: "row",
     gap: 8,
@@ -70,7 +60,7 @@ const useStyles = makeStyles((theme: Theme, props: any) => ({
   secondary: {
     backgroundColor: theme.colors.background,
     borderWidth: 1,
-    borderColor: theme.colors.borderSecondary,
+    borderColor: theme.colors.border,
     display: "flex",
     flexDirection: "row",
     gap: 8,

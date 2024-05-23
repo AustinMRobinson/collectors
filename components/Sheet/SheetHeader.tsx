@@ -1,6 +1,7 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import Icon from "../Icon/Icon";
 import { useTheme } from "@react-navigation/native";
+import { useStyles } from "react-native-unistyles";
 
 interface SheetHeaderProps {
   leadingPress: () => void;
@@ -11,7 +12,7 @@ export default function SheetHeader({
   leadingPress,
   trailingPress,
 }: SheetHeaderProps) {
-  const { colors } = useTheme();
+  const { theme } = useStyles();
 
   return (
     <View
@@ -37,11 +38,10 @@ export default function SheetHeader({
           width: 32,
           height: 32,
           borderRadius: 16,
-          // backgroundColor: colors.backgroundTertiary,
-          backgroundColor: "rgba(241, 241, 241, 0.8)",
+          backgroundColor: theme.colors.backgroundTransparent,
         }}
       >
-        <Icon name="share" size={24} color="#6C6E6F" />
+        <Icon name="share" size={24} color={theme.colors.textTertiary} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={trailingPress}
@@ -52,10 +52,10 @@ export default function SheetHeader({
           width: 32,
           height: 32,
           borderRadius: 16,
-          backgroundColor: "rgba(241, 241, 241, 0.8)",
+          backgroundColor: theme.colors.backgroundTransparent,
         }}
       >
-        <Icon name="x" size={24} color="#6C6E6F" />
+        <Icon name="x" size={24} color={theme.colors.textTertiary} />
       </TouchableOpacity>
     </View>
   );

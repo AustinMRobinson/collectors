@@ -1,7 +1,10 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ScrollView, View } from "react-native";
+import { useStyles } from "react-native-unistyles";
 
 export default function Estimate() {
+  const { theme } = useStyles();
+
   return (
     <View>
       <View
@@ -18,7 +21,7 @@ export default function Estimate() {
             flexGrow: 1,
             height: 1,
             borderBottomWidth: 1,
-            borderColor: "#F5F5F5",
+            borderColor: theme.colors.borderSecondary,
           }}
         />
         <ThemedText type="eyebrow" color="tertiary">
@@ -29,7 +32,7 @@ export default function Estimate() {
             flexGrow: 1,
             height: 1,
             borderBottomWidth: 1,
-            borderColor: "#F5F5F5",
+            borderColor: theme.colors.borderSecondary,
           }}
         />
       </View>
@@ -52,7 +55,9 @@ export default function Estimate() {
           <ThemedText type="eyebrow" color="tertiary">
             Ungraded
           </ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
+          <ThemedText type="headline" color="primary">
+            $3,565.90
+          </ThemedText>
           <ThemedText type="footnote" color="tertiary">
             Current value
           </ThemedText>
@@ -62,52 +67,76 @@ export default function Estimate() {
             width: 1,
             height: 64,
             borderLeftWidth: 1,
-            borderColor: "#F5F5F5",
+            borderColor: theme.colors.borderSecondary,
           }}
         />
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow">Ungraded</ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote">Current value</ThemedText>
+          <ThemedText type="eyebrow" color="tertiary">
+            Ungraded
+          </ThemedText>
+          <ThemedText type="headline" color="primary">
+            $3,565.90
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
+            Current value
+          </ThemedText>
         </View>
         <View
           style={{
             width: 1,
             height: 64,
             borderLeftWidth: 1,
-            borderColor: "#F5F5F5",
+            borderColor: theme.colors.borderSecondary,
           }}
         />
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow">Ungraded</ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote">Current value</ThemedText>
+          <ThemedText type="eyebrow" color="tertiary">
+            Ungraded
+          </ThemedText>
+          <ThemedText type="headline" color="primary">
+            $3,565.90
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
+            Current value
+          </ThemedText>
         </View>
         <View
           style={{
             width: 1,
             height: 64,
             borderLeftWidth: 1,
-            borderColor: "#F5F5F5",
+            borderColor: theme.colors.borderSecondary,
           }}
         />
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow">Ungraded</ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote">Current value</ThemedText>
+          <ThemedText type="eyebrow" color="tertiary">
+            Ungraded
+          </ThemedText>
+          <ThemedText type="headline" color="primary">
+            $3,565.90
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
+            Current value
+          </ThemedText>
         </View>
         <View
           style={{
             width: 1,
             height: 64,
             borderLeftWidth: 1,
-            borderColor: "#F5F5F5",
+            borderColor: theme.colors.borderSecondary,
           }}
         />
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow">Ungraded</ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote">Current value</ThemedText>
+          <ThemedText type="eyebrow" color="tertiary">
+            Ungraded
+          </ThemedText>
+          <ThemedText type="headline" color="primary">
+            $3,565.90
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
+            Current value
+          </ThemedText>
         </View>
       </ScrollView>
     </View>

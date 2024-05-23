@@ -1,6 +1,6 @@
 import { Text, type TextProps, StyleSheet } from "react-native";
 
-import { useTheme } from "@react-navigation/native";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export type ThemedTextProps = TextProps & {
   color?: "primary" | "secondary" | "tertiary" | "invert";
@@ -22,25 +22,26 @@ export function ThemedText({
   type = "default",
   ...rest
 }: ThemedTextProps) {
-  const { colors } = useTheme();
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
 
   let textColor;
 
   switch (color) {
     case "primary":
-      textColor = colors.textPrimary;
+      textColor = theme.colors.textPrimary;
       break;
     case "secondary":
-      textColor = colors.textSecondary;
+      textColor = theme.colors.textSecondary;
       break;
     case "tertiary":
-      textColor = colors.textTertiary;
+      textColor = theme.colors.textTertiary;
       break;
     case "invert":
-      textColor = colors.textInvert;
+      textColor = theme.colors.textInvert;
       break;
     default:
-      textColor = colors.text;
+      textColor = theme.colors.text;
       break;
   }
 
@@ -64,7 +65,7 @@ export function ThemedText({
   );
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   title: {
     fontFamily: "Area-Normal-Extrabold",
     lineHeight: 32,
@@ -119,4 +120,4 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontSize: 15,
   },
-});
+}));

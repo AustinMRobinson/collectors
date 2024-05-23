@@ -4,6 +4,7 @@ import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "../ThemedText";
 import Icon from "../Icon/Icon";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export const TabBar = ({
   state,
