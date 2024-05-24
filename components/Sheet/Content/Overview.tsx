@@ -1,13 +1,17 @@
 import { ThemedText } from "@/components/ThemedText";
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import { Image, ImageSourcePropType, View } from "react-native";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface OverviewProps {
   image: ImageSourcePropType;
   title: string;
-  game?: string;
+  game: string;
 }
 
 export default function Overview({ image, title, game }: OverviewProps) {
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
+
   return (
     <View>
       <View
@@ -32,23 +36,30 @@ export default function Overview({ image, title, game }: OverviewProps) {
           alignItems: "center",
         }}
       >
-        <ThemedText type="title" style={{ textAlign: "center" }}>
-          {title}
-        </ThemedText>
         <ThemedText
-          type="bodyLabel"
-          lightColor="#6C6E6F"
+          type="title"
+          color="primary"
           style={{ textAlign: "center" }}
         >
-          1999 Pokemon Game 1st Edition
+          {title}
+        </ThemedText>
+
+        <ThemedText
+          type="bodyLabel"
+          color="tertiary"
+          style={{ textAlign: "center" }}
+        >
+          {game}
         </ThemedText>
       </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   card: {
+    backgroundColor: theme.colors.backgroundTertiary,
+    borderRadius: 8,
     overflow: "visible",
     shadowColor: "#000",
     shadowOffset: {
@@ -59,4 +70,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 4,
   },
-});
+}));

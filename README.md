@@ -8,17 +8,17 @@
 - [x] Pull sheet interaction
 - [x] Share sheet
 
-### Day 2 (2 hrs)
+### Day 2 (2-3 hrs)
 
-- [ ] SVG icons
-- [ ] Elements persisting between views
-- [ ] Dark mode
-- [ ] Sticky header - title & card going to top, tap to go back to top
+- [x] SVG icons
+- [x] Dark mode
+- [x] Tab tap to scroll to top
 
 ### Day 3 (if time permits)
 
-- [ ] Skeleton loading
+- [x] Real chart
 - [ ] 3D card
+- [ ] Skeleton loading
 
 ## File
 

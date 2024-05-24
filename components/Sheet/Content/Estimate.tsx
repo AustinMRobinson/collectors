@@ -1,7 +1,16 @@
+import Divider from "@/components/Divider";
 import { ThemedText } from "@/components/ThemedText";
+import { Estimate } from "@/types";
 import { ScrollView, View } from "react-native";
+import { useStyles } from "react-native-unistyles";
 
-export default function Estimate() {
+interface EstimateProps {
+  estimates: Estimate[];
+}
+
+export default function EstimateView({ estimates }: EstimateProps) {
+  const { theme } = useStyles();
+
   return (
     <View>
       <View
@@ -18,10 +27,10 @@ export default function Estimate() {
             flexGrow: 1,
             height: 1,
             borderBottomWidth: 1,
-            borderColor: "#F5F5F5",
+            borderColor: theme.colors.borderSecondary,
           }}
         />
-        <ThemedText type="eyebrow" lightColor="#6C6E6F">
+        <ThemedText type="eyebrow" color="tertiary">
           Price Estimate
         </ThemedText>
         <View
@@ -29,7 +38,7 @@ export default function Estimate() {
             flexGrow: 1,
             height: 1,
             borderBottomWidth: 1,
-            borderColor: "#F5F5F5",
+            borderColor: theme.colors.borderSecondary,
           }}
         />
       </View>
@@ -49,65 +58,63 @@ export default function Estimate() {
         }}
       >
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow" lightColor="#6C6E6F">
+          <ThemedText type="eyebrow" color="tertiary">
             Ungraded
           </ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote" lightColor="#6C6E6F">
+          <ThemedText type="headline" color="primary">
+            $3,565.90
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
             Current value
           </ThemedText>
         </View>
-        <View
-          style={{
-            width: 1,
-            height: 64,
-            borderLeftWidth: 1,
-            borderColor: "#F5F5F5",
-          }}
-        />
+        <Divider vertical />
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow">Ungraded</ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote">Current value</ThemedText>
+          <ThemedText type="eyebrow" color="tertiary">
+            PSA 10
+          </ThemedText>
+          <ThemedText type="headline" color="primary">
+            $319,999
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
+            Pop 124
+          </ThemedText>
         </View>
-        <View
-          style={{
-            width: 1,
-            height: 64,
-            borderLeftWidth: 1,
-            borderColor: "#F5F5F5",
-          }}
-        />
+        <Divider vertical />
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow">Ungraded</ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote">Current value</ThemedText>
+          <ThemedText type="eyebrow" color="tertiary">
+            PSA 9
+          </ThemedText>
+          <ThemedText type="headline" color="primary">
+            $17,500
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
+            Pop 718
+          </ThemedText>
         </View>
-        <View
-          style={{
-            width: 1,
-            height: 64,
-            borderLeftWidth: 1,
-            borderColor: "#F5F5F5",
-          }}
-        />
+        <Divider vertical />
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow">Ungraded</ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote">Current value</ThemedText>
+          <ThemedText type="eyebrow" color="tertiary">
+            PSA 8
+          </ThemedText>
+          <ThemedText type="headline" color="primary">
+            $4,400.70
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
+            Pop 2,400
+          </ThemedText>
         </View>
-        <View
-          style={{
-            width: 1,
-            height: 64,
-            borderLeftWidth: 1,
-            borderColor: "#F5F5F5",
-          }}
-        />
+        <Divider vertical />
         <View style={{ gap: 6 }}>
-          <ThemedText type="eyebrow">Ungraded</ThemedText>
-          <ThemedText type="headline">$3,565.90</ThemedText>
-          <ThemedText type="footnote">Current value</ThemedText>
+          <ThemedText type="eyebrow" color="tertiary">
+            PSA 7
+          </ThemedText>
+          <ThemedText type="headline" color="primary">
+            $2,565.42
+          </ThemedText>
+          <ThemedText type="footnote" color="tertiary">
+            Pop 12,320
+          </ThemedText>
         </View>
       </ScrollView>
     </View>

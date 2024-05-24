@@ -6,6 +6,62 @@
 const tintColorLight = "#0a7ea4";
 const tintColorDark = "#fff";
 
+export const lightTheme = {
+  dark: false,
+  colors: {
+    primary: "#EB1C2D",
+    card: "#FAFAFA",
+    notification: "#EB1C2D",
+    background: "#FFFFFF",
+    backgroundSecondary: "#FAFAFA",
+    backgroundTertiary: "#F5F5F5",
+    backgroundTransparent: "rgba(241,241,241,0.8)",
+    backgroundInvert: "#0F0F0F",
+    border: "#EAEAEA",
+    borderSecondary: "#EAEAEA",
+    borderTertiary: "#F5F5F5",
+    text: "#48494A",
+    textPrimary: "#212121",
+    textSecondary: "#48494A",
+    textTertiary: "#6C6E6F",
+    textDisabled: "#BABABA",
+    textSuccess: "#039855",
+    textError: "#DA2D20",
+    textInvert: "#FFFFFF",
+    white: "#FFF",
+    black: "#FFF",
+  },
+};
+
+export const darkTheme = {
+  dark: true,
+  colors: {
+    primary: "#EB1C2D",
+    card: "#FAFAFA",
+    notification: "#EB1C2D",
+    background: "#0F0F0F",
+    backgroundSecondary: "#121212",
+    backgroundTertiary: "#202020",
+    backgroundTransparent: "rgba(255,255,255,0.1)",
+    backgroundInvert: "#FFFFFF",
+    border: "#303030",
+    borderSecondary: "#303030",
+    borderTertiary: "#202020",
+    text: "#F9F9F9",
+    textPrimary: "#FFFFFF",
+    textSecondary: "#C6C6C6",
+    textTertiary: "#949494",
+    textDisabled: "#BABABA",
+    textSuccess: "#039855",
+    textError: "#DA2D20",
+    textInvert: "#0F0F0F",
+    white: "#FFF",
+    black: "#FFF",
+  },
+};
+
+export type Theme = typeof lightTheme;
+
 export const Colors = {
   light: {
     text: "#11181C",

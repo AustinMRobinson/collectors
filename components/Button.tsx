@@ -1,16 +1,7 @@
-import {
-  Image,
-  ImageSourcePropType,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
-import { StaticText, ThemedText } from "@/components/ThemedText";
+import { TouchableOpacity } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
 import React from "react";
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { Theme, useTheme } from "@react-navigation/native";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface ButtonProps {
   variant?: "primary" | "secondary";
@@ -26,8 +17,8 @@ export function Button({
   onPress,
   ...rest
 }: ButtonProps) {
-  const theme = useTheme();
-  const styles = makeStyles(theme);
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
 
   return (
     <TouchableOpacity
@@ -40,48 +31,61 @@ export function Button({
       onPress={onPress}
       {...rest}
     >
-      <StaticText
+      <ThemedText
         type="bodyLabel"
-        style={{ color: variant === "primary" ? "#FFF" : "#212121" }}
+        color={variant === "primary" ? "invert" : "primary"}
+        style={{ marginTop: 2 }}
       >
         {children}
-      </StaticText>
+      </ThemedText>
     </TouchableOpacity>
   );
 }
 
-const makeStyles = ({ colors }: Theme) =>
-  StyleSheet.create({
-    primary: {
-      backgroundColor: "#0F0F0F",
-      color: "#FFFFFF",
-      display: "flex",
-      flexDirection: "row",
-      gap: 8,
-      justifyContent: "center",
-      // TODO: Drop shadows
+const stylesheet = createStyleSheet((theme) => ({
+  primary: {
+    backgroundColor: theme.colors.backgroundInvert,
+    display: "flex",
+    flexDirection: "row",
+    gap: 8,
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
     },
-    secondary: {
-      backgroundColor: "#FFFFFF",
-      borderWidth: 1,
-      borderColor: "#EAEAEA",
-      display: "flex",
-      flexDirection: "row",
-      gap: 8,
-      justifyContent: "center",
-      // TODO: Drop shadows
+    shadowOpacity: 0.15,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  secondary: {
+    backgroundColor: theme.colors.background,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    display: "flex",
+    flexDirection: "row",
+    gap: 8,
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    large: {
-      width: "100%",
-      minHeight: 56,
-      padding: 16,
-      borderRadius: 16,
-    },
-    medium: {
-      width: "100%",
-      minHeight: 40,
-      paddingHorizontal: 16,
-      paddingVertical: 6,
-      borderRadius: 12,
-    },
-  });
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  large: {
+    width: "100%",
+    minHeight: 56,
+    padding: 16,
+    borderRadius: 16,
+  },
+  medium: {
+    width: "100%",
+    minHeight: 40,
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    borderRadius: 12,
+  },
+}));

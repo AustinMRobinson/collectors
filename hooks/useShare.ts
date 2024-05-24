@@ -1,9 +1,15 @@
 import { Alert, Share } from "react-native";
 
-export const onShare = async () => {
+interface ShareProps {
+  title: string;
+  message: string;
+}
+
+export const onShare = async ({ title, message }: ShareProps) => {
   try {
     const result = await Share.share({
-      message: "Collectors",
+      title: title ?? "Collectors",
+      url: title ?? "Collectors",
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {

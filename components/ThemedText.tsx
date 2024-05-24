@@ -1,10 +1,9 @@
 import { Text, type TextProps, StyleSheet } from "react-native";
 
-import { useThemeColor } from "@/hooks/useThemeColor";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
+  color?: "primary" | "secondary" | "tertiary" | "invert";
   type?:
     | "title"
     | "headline"
@@ -18,18 +17,38 @@ export type ThemedTextProps = TextProps & {
 };
 
 export function ThemedText({
+  color,
   style,
-  lightColor,
-  darkColor,
   type = "default",
   ...rest
 }: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
+
+  let textColor;
+
+  switch (color) {
+    case "primary":
+      textColor = theme.colors.textPrimary;
+      break;
+    case "secondary":
+      textColor = theme.colors.textSecondary;
+      break;
+    case "tertiary":
+      textColor = theme.colors.textTertiary;
+      break;
+    case "invert":
+      textColor = theme.colors.textInvert;
+      break;
+    default:
+      textColor = theme.colors.text;
+      break;
+  }
 
   return (
     <Text
       style={[
-        { color },
+        { color: textColor },
         type === "title" ? styles.title : undefined,
         type === "headline" ? styles.headline : undefined,
         type === "default" ? styles.body : undefined,
@@ -46,31 +65,7 @@ export function ThemedText({
   );
 }
 
-export function StaticText({
-  style,
-  type = "default",
-  ...rest
-}: ThemedTextProps) {
-  return (
-    <Text
-      style={[
-        type === "title" ? styles.title : undefined,
-        type === "headline" ? styles.headline : undefined,
-        type === "default" ? styles.body : undefined,
-        type === "bodyLabel" ? styles.bodyLabel : undefined,
-        type === "caption" ? styles.caption : undefined,
-        type === "captionLabel" ? styles.captionLabel : undefined,
-        type === "footnote" ? styles.footnote : undefined,
-        type === "eyebrow" ? styles.eyebrow : undefined,
-        type === "link" ? styles.link : undefined,
-        style,
-      ]}
-      {...rest}
-    />
-  );
-}
-
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   title: {
     fontFamily: "Area-Normal-Extrabold",
     lineHeight: 32,
@@ -125,4 +120,4 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     fontSize: 15,
   },
-});
+}));

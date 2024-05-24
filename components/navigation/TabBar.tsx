@@ -3,6 +3,8 @@ import { TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedText } from "../ThemedText";
+import Icon from "../Icon/Icon";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 export const TabBar = ({
   state,
@@ -12,22 +14,32 @@ export const TabBar = ({
 }: BottomTabBarProps) => {
   const icons: any = {
     default: {
-      Orders: require("@/assets/images/orders.png"),
-      Camera: require("@/assets/images/scan-camera.png"),
-      Collection: require("@/assets/images/collection.png"),
+      Orders: "orders",
+      Camera: "scanCamera",
+      Collection: "collection",
     },
     active: {
-      Orders: require("@/assets/images/orders-active.png"),
-      Camera: require("@/assets/images/scan-camera.png"),
-      Collection: require("@/assets/images/collection-active.png"),
+      Orders: "ordersFilled",
+      Camera: "scanCamera",
+      Collection: "collectionFilled",
     },
   };
+
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
 
   return (
     <SafeAreaView
       edges={["bottom", "left", "right"]}
       style={{
-        backgroundColor: "#FFF",
+        backgroundColor: theme.colors.background,
+        shadowColor: theme.colors.background,
+        shadowOffset: {
+          width: 0,
+          height: -24,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 6,
       }}
     >
       <View
@@ -81,18 +93,28 @@ export const TabBar = ({
                 styles.tab,
               ]}
             >
-              <Image
-                width={32}
-                height={32}
-                style={{ width: 32, height: 32 }}
-                source={
+              <Icon
+                size={32}
+                name={
                   isFocused
                     ? icons.active[options.title!]
                     : icons.default[options.title!]
                 }
+                color={
+                  options.title !== "Camera"
+                    ? isFocused
+                      ? theme.colors.textPrimary
+                      : theme.colors.textSecondary
+                    : theme.colors.textInvert
+                }
               />
               {options.title !== "Camera" && (
-                <ThemedText type="footnote">{label as any}</ThemedText>
+                <ThemedText
+                  type="footnote"
+                  color={isFocused ? "primary" : "secondary"}
+                >
+                  {label as any}
+                </ThemedText>
               )}
             </TouchableOpacity>
           );
@@ -102,7 +124,7 @@ export const TabBar = ({
   );
 };
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   tab: {
     flex: 1,
     flexShrink: 0,
@@ -116,9 +138,17 @@ const styles = StyleSheet.create({
   cameraTab: {
     maxWidth: 64,
     maxHeight: 64,
-    backgroundColor: "#000",
+    backgroundColor: theme.colors.backgroundInvert,
     justifyContent: "center",
     padding: 16,
     borderRadius: 32,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-});
+}));

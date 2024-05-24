@@ -1,17 +1,20 @@
 import {
   Image,
   ImageSourcePropType,
-  Pressable,
   StyleSheet,
   TouchableOpacity,
   View,
 } from "react-native";
-import { StaticText, ThemedText } from "./ThemedText";
+import { ThemedText } from "./ThemedText";
+import Icon from "./Icon/Icon";
+import { useStyles } from "react-native-unistyles";
+import formatPrice from "@/utils/formatPrice";
 
 interface DetailListItemProps {
   image?: ImageSourcePropType;
   grade?: number;
   title: string;
+  game: string;
   price: number;
   change: number;
   onPress: () => void;
@@ -21,28 +24,34 @@ export function DetailListItem({
   image,
   grade,
   title,
+  game,
   price,
   change,
   onPress,
   ...rest
 }: DetailListItemProps) {
-  let USDollar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  const { theme } = useStyles();
 
-  let formattedChange = change * 100;
+  let percentageChange = change * 100;
+  let formattedChange = Math.round(percentageChange * 100) / 100;
   let removedChange = formattedChange.toString().replace("-", "");
+
+  const swipeFromLeftOpen = () => {
+    alert("Added to Vault");
+  };
+  const swipeFromRightOpen = () => {
+    alert("Removed");
+  };
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress} {...rest}>
-      <Image style={styles.image} source={image}></Image>
+      <Image style={styles.image} source={image} />
       <View style={styles.info}>
-        <ThemedText type="eyebrow" lightColor="#6C6E6F">
+        <ThemedText type="eyebrow" color="tertiary">
           {grade ?? "Ungraded"}
         </ThemedText>
-        <ThemedText type="default" numberOfLines={2}>
-          {title}
+        <ThemedText type="default" numberOfLines={2} color="primary">
+          {game + " " + title}
         </ThemedText>
         <View
           style={{
@@ -52,7 +61,9 @@ export function DetailListItem({
             gap: 6,
           }}
         >
-          <ThemedText type="headline">{USDollar.format(price)}</ThemedText>
+          <ThemedText type="headline" color="primary">
+            {formatPrice(price)}
+          </ThemedText>
           <View
             style={{
               display: "flex",
@@ -60,19 +71,24 @@ export function DetailListItem({
               alignItems: "center",
             }}
           >
-            <Image
-              source={
-                change >= 0
-                  ? require("@/assets/images/arrow-up.png")
-                  : require("@/assets/images/arrow-down.png")
+            <Icon
+              name={change >= 0 ? "arrowUp" : "arrowDown"}
+              size={16}
+              color={
+                change >= 0 ? theme.colors.textSuccess : theme.colors.textError
               }
             />
-            <StaticText
+            <ThemedText
               type="footnote"
-              style={{ color: change >= 0 ? "#039855" : "#DA2D20" }}
+              style={{
+                color:
+                  change >= 0
+                    ? theme.colors.textSuccess
+                    : theme.colors.textError,
+              }}
             >
               {removedChange}%
-            </StaticText>
+            </ThemedText>
           </View>
         </View>
       </View>

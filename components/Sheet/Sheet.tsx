@@ -18,22 +18,35 @@ import { ListItem } from "../ListItem";
 import { onShare } from "@/hooks/useShare";
 import { ThemedText } from "../ThemedText";
 import { Card } from "@/types";
-import { detailImages, images } from "@/constants/Images";
+import {
+  collectorImages,
+  detailImages,
+  images,
+  salesImages,
+} from "@/constants/Images";
 import Divider from "../Divider";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import formatPrice from "@/utils/formatPrice";
+import Chart from "../Chart";
+import EstimateView from "./Content/Estimate";
 
 export type Ref = BottomSheetModal;
-
 interface Props {
   title?: string;
   item: Card;
 }
 
 const Sheet = forwardRef<Ref, Props>((props, ref) => {
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
+
   // variables
   const snapPoints = useMemo(() => ["92.5%", "92.5%"], []);
 
   // destructure data
-  const { image, grade, title, price, change } = props.item;
+  const { image, title, game, price, estimates, history, collectors } =
+    props.item;
 
   // callbacks
   const { dismiss } = useBottomSheetModal();
@@ -49,23 +62,10 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
     ),
     []
   );
-  // TODO: Insets for footer
-  // const inset = useSafeAreaInsets();
-  // footer
-  const renderFooter = useCallback(
-    (props: any) => (
-      <BottomSheetFooter {...props}>
-        <View style={styles.footerContainer}>
-          <Button>Submit for Grading</Button>
-        </View>
-      </BottomSheetFooter>
-    ),
-    []
-  );
 
-  // const colorScheme = useColorScheme() ?? "light";
+  const [range, setRange] = useState<String>("6M");
 
-  const [range, setRange] = useState<String>("2W");
+  const insets = useSafeAreaInsets();
 
   return (
     <BottomSheetModal
@@ -74,54 +74,38 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
       snapPoints={snapPoints}
       style={styles.sheet}
       enablePanDownToClose={true}
-      handleIndicatorStyle={{ backgroundColor: "#BABABA" }}
-      // backgroundStyle={{
-      //   backgroundColor: colorScheme === "dark" ? "#121212" : "#FFF",
-      // }}
+      handleIndicatorStyle={{
+        backgroundColor: theme.colors.borderSecondary,
+      }}
+      backgroundStyle={{
+        backgroundColor: theme.colors.backgroundSecondary,
+      }}
       backdropComponent={renderBackdrop}
-      footerComponent={renderFooter}
     >
-      <SheetHeader leadingPress={onShare} trailingPress={() => dismiss()} />
-      <BottomSheetScrollView contentContainerStyle={{ paddingBottom: 128 }}>
-        <Overview image={detailImages[image]} title={title} />
-        <Estimate />
+      <SheetHeader
+        leadingPress={() =>
+          onShare({ title: game + " " + title, message: formatPrice(price) })
+        }
+        trailingPress={() => dismiss()}
+      />
+      <BottomSheetScrollView contentContainerStyle={{ paddingBottom: 48 }}>
+        <Overview image={detailImages[image]} title={title} game={game} />
+        <EstimateView estimates={estimates} />
         <Divider />
         <Section title="Sales History" action="Show 45 more sales">
-          <ListItem
-            image={require("@/assets/images/icon.png")}
-            title="Auction"
-            caption="Feb 13, 2024"
-            trailing="$44.00"
-          />
-          <ListItem
-            image={require("@/assets/images/icon.png")}
-            title="Auction"
-            caption="Feb 13, 2024"
-            trailing="$44.00"
-          />
-          <ListItem
-            image={require("@/assets/images/icon.png")}
-            title="Auction"
-            caption="Feb 13, 2024"
-            trailing="$44.00"
-          />
-          <ListItem
-            image={require("@/assets/images/icon.png")}
-            title="Auction"
-            caption="Feb 13, 2024"
-            trailing="$44.00"
-          />
+          {history.map((sale) => (
+            <ListItem
+              key={sale.price}
+              image={salesImages[sale.image]}
+              title={sale.type}
+              caption={sale.date}
+              trailing={formatPrice(sale.price)}
+            />
+          ))}
         </Section>
         <Divider />
         <Section title="Auction Price Trend">
-          <View
-            style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 16 }}
-          >
-            <Image
-              source={require("@/assets/images/chart.png")}
-              style={{ width: "100%", height: "auto", aspectRatio: 1.53 }}
-            ></Image>
-          </View>
+          <Chart range={range} />
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -135,6 +119,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
           >
             {["2W", "1M", "3M", "6M", "1Y", "ALL"].map((item) => (
               <TouchableOpacity
+                key={item}
                 onPress={() => setRange(item)}
                 style={{
                   display: "flex",
@@ -146,10 +131,19 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
                   minHeight: 44,
                   flexBasis: 44,
                   flexGrow: 1,
-                  backgroundColor: range === item ? "#F5F5F5" : "transparent",
+                  backgroundColor:
+                    range === item
+                      ? theme.colors.backgroundTransparent
+                      : "transparent",
                 }}
               >
-                <ThemedText type="captionLabel">{item}</ThemedText>
+                <ThemedText
+                  type="captionLabel"
+                  color={range === item ? "primary" : "secondary"}
+                  style={{ marginTop: 2 }}
+                >
+                  {item}
+                </ThemedText>
               </TouchableOpacity>
             ))}
           </ScrollView>
@@ -167,78 +161,36 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
             contentContainerStyle={{
               paddingVertical: 12,
               paddingHorizontal: 16,
-              columnGap: 28,
+              columnGap: 32,
               alignItems: "center",
             }}
           >
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
+            {collectors.map((collector) => (
+              <TouchableOpacity
+                key={collector.name}
+                style={{ display: "flex", gap: 8, alignItems: "center" }}
+              >
+                <Image
+                  source={collectorImages[collector.image]}
+                  style={{ width: 72, height: 72 }}
+                />
+                <View style={{ display: "flex", alignItems: "center" }}>
+                  <ThemedText type="bodyLabel">{collector.name}</ThemedText>
+                  <ThemedText type="caption">{collector.grade}</ThemedText>
+                </View>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </Section>
       </BottomSheetScrollView>
+      <View style={[{ paddingBottom: insets.bottom }, styles.footerContainer]}>
+        <Button>Submit for Grading</Button>
+      </View>
     </BottomSheetModal>
   );
 });
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   sheet: {
     shadowColor: "#000",
     shadowOffset: {
@@ -250,16 +202,16 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   footerContainer: {
+    backgroundColor: theme.colors.background,
     padding: 16,
-    backgroundColor: "#FFF",
     shadowOffset: {
       width: 0,
       height: -4,
     },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.05,
     shadowRadius: 8,
     elevation: 4,
   },
-});
+}));
 
 export default Sheet;
