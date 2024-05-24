@@ -21,9 +21,9 @@ import { Card } from "@/types";
 import { detailImages, images } from "@/constants/Images";
 import Divider from "../Divider";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export type Ref = BottomSheetModal;
-
 interface Props {
   title?: string;
   item: Card;
@@ -53,20 +53,10 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
     ),
     []
   );
-  // TODO: Insets for footer
-  // const inset = useSafeAreaInsets();
-  // footer
-  const renderFooter = useCallback(
-    (props: any) => (
-      <BottomSheetFooter {...props}>
-        <View style={styles.footerContainer}>
-          <Button>Submit for Grading</Button>
-        </View>
-      </BottomSheetFooter>
-    ),
-    []
-  );
+
   const [range, setRange] = useState<String>("2W");
+
+  const insets = useSafeAreaInsets();
 
   return (
     <BottomSheetModal
@@ -82,38 +72,22 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
         backgroundColor: theme.colors.backgroundSecondary,
       }}
       backdropComponent={renderBackdrop}
-      footerComponent={renderFooter}
     >
       <SheetHeader leadingPress={onShare} trailingPress={() => dismiss()} />
-      <BottomSheetScrollView contentContainerStyle={{ paddingBottom: 128 }}>
+      <BottomSheetScrollView contentContainerStyle={{ paddingBottom: 48 }}>
         <Overview image={detailImages[image]} title={title} />
         <Estimate />
         <Divider />
         <Section title="Sales History" action="Show 45 more sales">
-          <ListItem
-            image={require("@/assets/images/icon.png")}
-            title="Auction"
-            caption="Feb 13, 2024"
-            trailing="$44.00"
-          />
-          <ListItem
-            image={require("@/assets/images/icon.png")}
-            title="Auction"
-            caption="Feb 13, 2024"
-            trailing="$44.00"
-          />
-          <ListItem
-            image={require("@/assets/images/icon.png")}
-            title="Auction"
-            caption="Feb 13, 2024"
-            trailing="$44.00"
-          />
-          <ListItem
-            image={require("@/assets/images/icon.png")}
-            title="Auction"
-            caption="Feb 13, 2024"
-            trailing="$44.00"
-          />
+          {[0, 1, 2, 3].map((item) => (
+            <ListItem
+              key={item}
+              image={require("@/assets/images/icon.png")}
+              title="Auction"
+              caption="Feb 13, 2024"
+              trailing="$44.00"
+            />
+          ))}
         </Section>
         <Divider />
         <Section title="Auction Price Trend">
@@ -183,69 +157,27 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
               alignItems: "center",
             }}
           >
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ display: "flex", gap: 8, alignItems: "center" }}
-            >
-              <Image
-                source={require("@/assets/images/profile-2.png")}
-                style={{ width: 72, height: 72 }}
-              />
-              <View style={{ display: "flex", alignItems: "center" }}>
-                <ThemedText type="bodyLabel">Steph</ThemedText>
-                <ThemedText type="caption">PSA 9</ThemedText>
-              </View>
-            </TouchableOpacity>
+            {[0, 1, 2, 3, 4, 5].map((item) => (
+              <TouchableOpacity
+                key={item}
+                style={{ display: "flex", gap: 8, alignItems: "center" }}
+              >
+                <Image
+                  source={require("@/assets/images/profile-2.png")}
+                  style={{ width: 72, height: 72 }}
+                />
+                <View style={{ display: "flex", alignItems: "center" }}>
+                  <ThemedText type="bodyLabel">Steph</ThemedText>
+                  <ThemedText type="caption">PSA 9</ThemedText>
+                </View>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
         </Section>
       </BottomSheetScrollView>
+      <View style={[{ paddingBottom: insets.bottom }, styles.footerContainer]}>
+        <Button>Submit for Grading</Button>
+      </View>
     </BottomSheetModal>
   );
 });
@@ -262,13 +194,13 @@ const stylesheet = createStyleSheet((theme) => ({
     elevation: 8,
   },
   footerContainer: {
-    backgroundColor: theme.colors.backgroundSecondary,
+    backgroundColor: theme.colors.background,
     padding: 16,
     shadowOffset: {
       width: 0,
       height: -4,
     },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.05,
     shadowRadius: 8,
     elevation: 4,
   },

@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { ThemedText } from "./ThemedText";
 import Icon from "./Icon/Icon";
+import { useStyles } from "react-native-unistyles";
 
 interface DetailListItemProps {
   image?: ImageSourcePropType;
@@ -27,6 +28,8 @@ export function DetailListItem({
   onPress,
   ...rest
 }: DetailListItemProps) {
+  const { theme } = useStyles();
+
   let USDollar = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -67,11 +70,18 @@ export function DetailListItem({
             <Icon
               name={change >= 0 ? "arrowUp" : "arrowDown"}
               size={16}
-              color={change >= 0 ? "#039855" : "#DA2D20"}
+              color={
+                change >= 0 ? theme.colors.textSuccess : theme.colors.textError
+              }
             />
             <ThemedText
               type="footnote"
-              style={{ color: change >= 0 ? "#039855" : "#DA2D20" }}
+              style={{
+                color:
+                  change >= 0
+                    ? theme.colors.textSuccess
+                    : theme.colors.textError,
+              }}
             >
               {removedChange}%
             </ThemedText>

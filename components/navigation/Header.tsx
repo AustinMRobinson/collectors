@@ -11,6 +11,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { setStatusBarStyle } from "expo-status-bar";
 import Icon from "../Icon/Icon";
 import { IconRegistry } from "@/types";
+import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface HeaderButtonProps {
   image?: ImageSourcePropType;
@@ -18,12 +19,15 @@ interface HeaderButtonProps {
 }
 
 function HeaderButton({ image, icon }: HeaderButtonProps) {
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
+
   return (
     <TouchableOpacity style={styles.headerButton}>
       {image ? (
         <Image width={28} height={28} source={image} />
       ) : (
-        <Icon name={icon!} size={32} color="#FFF" />
+        <Icon name={icon!} size={32} color={theme.colors.white} />
       )}
     </TouchableOpacity>
   );
@@ -44,6 +48,8 @@ export const Tabs = [
 export default function Header({ title, tabs }: HeaderProps) {
   const insets = useSafeAreaInsets();
   setStatusBarStyle("light");
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
 
   return (
     <View
@@ -71,7 +77,9 @@ export default function Header({ title, tabs }: HeaderProps) {
             >
               <ThemedText
                 type="captionLabel"
-                style={{ color: tab.active ? "#EB1C2D" : "#FFF" }}
+                style={{
+                  color: tab.active ? theme.colors.primary : theme.colors.white,
+                }}
               >
                 {tab.title}
               </ThemedText>
@@ -83,7 +91,7 @@ export default function Header({ title, tabs }: HeaderProps) {
   );
 }
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   headerButton: {},
   headerTitle: {
     flexGrow: 1,
@@ -124,10 +132,9 @@ const styles = StyleSheet.create({
     minHeight: 40,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    color: "#FFF",
     borderRadius: 20,
   },
   tabActive: {
-    backgroundColor: "#FFF",
+    backgroundColor: theme.colors.white,
   },
-});
+}));

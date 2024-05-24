@@ -1,3 +1,4 @@
+import Divider from "@/components/Divider";
 import { ThemedText } from "@/components/ThemedText";
 import { ScrollView, View } from "react-native";
 import { useStyles } from "react-native-unistyles";
@@ -62,80 +63,52 @@ export default function Estimate() {
             Current value
           </ThemedText>
         </View>
-        <View
-          style={{
-            width: 1,
-            height: 64,
-            borderLeftWidth: 1,
-            borderColor: theme.colors.borderSecondary,
-          }}
-        />
+        <Divider vertical />
         <View style={{ gap: 6 }}>
           <ThemedText type="eyebrow" color="tertiary">
-            Ungraded
+            PSA 10
           </ThemedText>
           <ThemedText type="headline" color="primary">
-            $3,565.90
+            $319,999
           </ThemedText>
           <ThemedText type="footnote" color="tertiary">
-            Current value
+            Pop 124
           </ThemedText>
         </View>
-        <View
-          style={{
-            width: 1,
-            height: 64,
-            borderLeftWidth: 1,
-            borderColor: theme.colors.borderSecondary,
-          }}
-        />
+        <Divider vertical />
         <View style={{ gap: 6 }}>
           <ThemedText type="eyebrow" color="tertiary">
-            Ungraded
+            PSA 9
           </ThemedText>
           <ThemedText type="headline" color="primary">
-            $3,565.90
+            $17,500
           </ThemedText>
           <ThemedText type="footnote" color="tertiary">
-            Current value
+            Pop 718
           </ThemedText>
         </View>
-        <View
-          style={{
-            width: 1,
-            height: 64,
-            borderLeftWidth: 1,
-            borderColor: theme.colors.borderSecondary,
-          }}
-        />
+        <Divider vertical />
         <View style={{ gap: 6 }}>
           <ThemedText type="eyebrow" color="tertiary">
-            Ungraded
+            PSA 8
           </ThemedText>
           <ThemedText type="headline" color="primary">
-            $3,565.90
+            $4,400.70
           </ThemedText>
           <ThemedText type="footnote" color="tertiary">
-            Current value
+            Pop 2,400
           </ThemedText>
         </View>
-        <View
-          style={{
-            width: 1,
-            height: 64,
-            borderLeftWidth: 1,
-            borderColor: theme.colors.borderSecondary,
-          }}
-        />
+        <Divider vertical />
         <View style={{ gap: 6 }}>
           <ThemedText type="eyebrow" color="tertiary">
-            Ungraded
+            PSA 7
           </ThemedText>
           <ThemedText type="headline" color="primary">
-            $3,565.90
+            $2,565.42
           </ThemedText>
           <ThemedText type="footnote" color="tertiary">
-            Current value
+            Pop 12,320
           </ThemedText>
         </View>
       </ScrollView>

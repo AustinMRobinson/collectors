@@ -28,6 +28,8 @@ export const lightTheme = {
     textSuccess: "#039855",
     textError: "#DA2D20",
     textInvert: "#FFFFFF",
+    white: "#FFF",
+    black: "#FFF",
   },
 };
 
@@ -53,6 +55,8 @@ export const darkTheme = {
     textSuccess: "#039855",
     textError: "#DA2D20",
     textInvert: "#0F0F0F",
+    white: "#FFF",
+    black: "#FFF",
   },
 };
 

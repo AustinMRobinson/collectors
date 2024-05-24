@@ -25,12 +25,13 @@ export const TabBar = ({
     },
   };
 
+  const { theme } = useStyles();
+  const styles = stylesheet(theme);
+
   return (
     <SafeAreaView
       edges={["bottom", "left", "right"]}
-      style={{
-        backgroundColor: "#FFF",
-      }}
+      style={{ backgroundColor: theme.colors.background }}
     >
       <View
         style={{
@@ -93,9 +94,9 @@ export const TabBar = ({
                 color={
                   options.title !== "Camera"
                     ? isFocused
-                      ? "#212121"
-                      : "#6C6E6F"
-                    : "#FFF"
+                      ? theme.colors.textPrimary
+                      : theme.colors.textSecondary
+                    : theme.colors.textInvert
                 }
               />
               {options.title !== "Camera" && (
@@ -114,7 +115,7 @@ export const TabBar = ({
   );
 };
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme) => ({
   tab: {
     flex: 1,
     flexShrink: 0,
@@ -128,7 +129,7 @@ const styles = StyleSheet.create({
   cameraTab: {
     maxWidth: 64,
     maxHeight: 64,
-    backgroundColor: "#000",
+    backgroundColor: theme.colors.backgroundInvert,
     justifyContent: "center",
     padding: 16,
     borderRadius: 32,
@@ -141,4 +142,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-});
+}));
