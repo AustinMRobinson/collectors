@@ -1,4 +1,4 @@
-type Estimate = {
+export type Estimate = {
   grade: string;
   price: number;
   population: number;
@@ -8,6 +8,7 @@ type Sale = {
   type: "Auction" | "Buy it now";
   date: string;
   price: number;
+  image: string;
 };
 
 type Collector = {

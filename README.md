@@ -16,6 +16,7 @@
 
 ### Day 3 (if time permits)
 
+- [x] Real chart
 - [ ] 3D card
 - [ ] Skeleton loading
 

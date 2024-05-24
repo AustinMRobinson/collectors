@@ -28,7 +28,7 @@ export default function Index() {
     price: 0,
     change: 0,
     estimates: [{ grade: "", price: 0, population: 0 }],
-    history: [{ type: "Auction", date: "", price: 0 }],
+    history: [{ type: "Auction", date: "", price: 0, image: "" }],
     collectors: [{ name: "", grade: "", image: "" }],
   });
 

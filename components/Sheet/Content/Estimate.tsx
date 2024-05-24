@@ -1,9 +1,14 @@
 import Divider from "@/components/Divider";
 import { ThemedText } from "@/components/ThemedText";
+import { Estimate } from "@/types";
 import { ScrollView, View } from "react-native";
 import { useStyles } from "react-native-unistyles";
 
-export default function Estimate() {
+interface EstimateProps {
+  estimates: Estimate[];
+}
+
+export default function EstimateView({ estimates }: EstimateProps) {
   const { theme } = useStyles();
 
   return (

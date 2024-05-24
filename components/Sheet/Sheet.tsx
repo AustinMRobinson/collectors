@@ -18,12 +18,18 @@ import { ListItem } from "../ListItem";
 import { onShare } from "@/hooks/useShare";
 import { ThemedText } from "../ThemedText";
 import { Card } from "@/types";
-import { detailImages, images } from "@/constants/Images";
+import {
+  collectorImages,
+  detailImages,
+  images,
+  salesImages,
+} from "@/constants/Images";
 import Divider from "../Divider";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import formatPrice from "@/utils/formatPrice";
 import Chart from "../Chart";
+import EstimateView from "./Content/Estimate";
 
 export type Ref = BottomSheetModal;
 interface Props {
@@ -39,17 +45,8 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
   const snapPoints = useMemo(() => ["92.5%", "92.5%"], []);
 
   // destructure data
-  const {
-    image,
-    grade,
-    title,
-    game,
-    price,
-    change,
-    estimates,
-    history,
-    collectors,
-  } = props.item;
+  const { image, title, game, price, estimates, history, collectors } =
+    props.item;
 
   // callbacks
   const { dismiss } = useBottomSheetModal();
@@ -66,7 +63,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
     []
   );
 
-  const [range, setRange] = useState<String>("2W");
+  const [range, setRange] = useState<String>("6M");
 
   const insets = useSafeAreaInsets();
 
@@ -93,13 +90,13 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
       />
       <BottomSheetScrollView contentContainerStyle={{ paddingBottom: 48 }}>
         <Overview image={detailImages[image]} title={title} game={game} />
-        <Estimate />
+        <EstimateView estimates={estimates} />
         <Divider />
         <Section title="Sales History" action="Show 45 more sales">
           {history.map((sale) => (
             <ListItem
               key={sale.price}
-              image={require("@/assets/images/icon.png")}
+              image={salesImages[sale.image]}
               title={sale.type}
               caption={sale.date}
               trailing={formatPrice(sale.price)}
@@ -108,15 +105,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
         </Section>
         <Divider />
         <Section title="Auction Price Trend">
-          <View
-            style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 16 }}
-          >
-            <Image
-              source={require("@/assets/images/chart.png")}
-              style={{ width: "100%", height: "auto", aspectRatio: 1.53 }}
-            ></Image>
-            <Chart />
-          </View>
+          <Chart range={range} />
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -172,7 +161,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
             contentContainerStyle={{
               paddingVertical: 12,
               paddingHorizontal: 16,
-              columnGap: 28,
+              columnGap: 32,
               alignItems: "center",
             }}
           >
@@ -182,7 +171,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
                 style={{ display: "flex", gap: 8, alignItems: "center" }}
               >
                 <Image
-                  source={require("@/assets/images/profile-2.png")}
+                  source={collectorImages[collector.image]}
                   style={{ width: 72, height: 72 }}
                 />
                 <View style={{ display: "flex", alignItems: "center" }}>
