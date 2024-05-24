@@ -1,7 +1,7 @@
 # Collectors Challenge
 
-![Walkthrough video](https://drive.google.com/file/d/1W6LlvZ2y3hz2AEeFq84HaOiPKsLYHuUJ/view?usp=sharing)
-![collectors-challenge-preview](https://github.com/AustinMRobinson/collectors/assets/20391648/0b5342a9-4905-4533-b84a-b889c9fbe29f)
+[![Preview image](https://github.com/AustinMRobinson/collectors/assets/20391648/0b5342a9-4905-4533-b84a-b889c9fbe29f)
+](https://drive.google.com/file/d/1W6LlvZ2y3hz2AEeFq84HaOiPKsLYHuUJ/view?usp=sharing)
 
 ## Overview
 
