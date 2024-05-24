@@ -38,6 +38,7 @@ export default function Index() {
     >
       <ScrollView
         style={{ width: "100%", display: "flex", flexDirection: "column" }}
+        contentContainerStyle={{ paddingBottom: 24 }}
       >
         <View
           style={{

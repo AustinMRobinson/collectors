@@ -54,7 +54,7 @@ export default function Header({ title, tabs }: HeaderProps) {
   return (
     <View
       style={{
-        backgroundColor: "#EB1C2D",
+        backgroundColor: theme.colors.primary,
         paddingTop: insets.top,
         paddingHorizontal: insets.left,
       }}

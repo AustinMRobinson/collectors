@@ -31,7 +31,16 @@ export const TabBar = ({
   return (
     <SafeAreaView
       edges={["bottom", "left", "right"]}
-      style={{ backgroundColor: theme.colors.background }}
+      style={{
+        backgroundColor: theme.colors.background,
+        shadowColor: theme.colors.background,
+        shadowOffset: {
+          width: 0,
+          height: -24,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+      }}
     >
       <View
         style={{
