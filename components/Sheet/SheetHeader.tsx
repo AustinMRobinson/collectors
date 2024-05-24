@@ -1,7 +1,8 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import Icon from "../Icon/Icon";
-import { useTheme } from "@react-navigation/native";
 import { useStyles } from "react-native-unistyles";
+import { BlurView } from "expo-blur";
+import { Card } from "@/types";
 
 interface SheetHeaderProps {
   leadingPress: () => void;
@@ -13,7 +14,6 @@ export default function SheetHeader({
   trailingPress,
 }: SheetHeaderProps) {
   const { theme } = useStyles();
-
   return (
     <View
       style={{
@@ -29,34 +29,50 @@ export default function SheetHeader({
         zIndex: 10,
       }}
     >
-      <TouchableOpacity
-        onPress={leadingPress}
+      <BlurView
+        tint="light"
+        intensity={20}
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 32,
-          height: 32,
           borderRadius: 16,
+          overflow: "hidden",
           backgroundColor: theme.colors.backgroundTransparent,
         }}
       >
-        <Icon name="share" size={24} color={theme.colors.textTertiary} />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={trailingPress}
+        <TouchableOpacity
+          onPress={leadingPress}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 32,
+            height: 32,
+          }}
+        >
+          <Icon name="share" size={24} color={theme.colors.textTertiary} />
+        </TouchableOpacity>
+      </BlurView>
+      <BlurView
+        tint="light"
+        intensity={20}
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 32,
-          height: 32,
           borderRadius: 16,
+          overflow: "hidden",
           backgroundColor: theme.colors.backgroundTransparent,
         }}
       >
-        <Icon name="x" size={24} color={theme.colors.textTertiary} />
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={trailingPress}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 32,
+            height: 32,
+          }}
+        >
+          <Icon name="x" size={24} color={theme.colors.textTertiary} />
+        </TouchableOpacity>
+      </BlurView>
     </View>
   );
 }

@@ -1,7 +1,6 @@
 import {
   Image,
   ImageSourcePropType,
-  Pressable,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -9,11 +8,13 @@ import {
 import { ThemedText } from "./ThemedText";
 import Icon from "./Icon/Icon";
 import { useStyles } from "react-native-unistyles";
+import formatPrice from "@/utils/formatPrice";
 
 interface DetailListItemProps {
   image?: ImageSourcePropType;
   grade?: number;
   title: string;
+  game: string;
   price: number;
   change: number;
   onPress: () => void;
@@ -23,6 +24,7 @@ export function DetailListItem({
   image,
   grade,
   title,
+  game,
   price,
   change,
   onPress,
@@ -30,24 +32,26 @@ export function DetailListItem({
 }: DetailListItemProps) {
   const { theme } = useStyles();
 
-  let USDollar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-
   let percentageChange = change * 100;
   let formattedChange = Math.round(percentageChange * 100) / 100;
   let removedChange = formattedChange.toString().replace("-", "");
 
+  const swipeFromLeftOpen = () => {
+    alert("Added to Vault");
+  };
+  const swipeFromRightOpen = () => {
+    alert("Removed");
+  };
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress} {...rest}>
-      <Image style={styles.image} source={image}></Image>
+      <Image style={styles.image} source={image} />
       <View style={styles.info}>
         <ThemedText type="eyebrow" color="tertiary">
           {grade ?? "Ungraded"}
         </ThemedText>
         <ThemedText type="default" numberOfLines={2} color="primary">
-          {title}
+          {game + " " + title}
         </ThemedText>
         <View
           style={{
@@ -58,7 +62,7 @@ export function DetailListItem({
           }}
         >
           <ThemedText type="headline" color="primary">
-            {USDollar.format(price)}
+            {formatPrice(price)}
           </ThemedText>
           <View
             style={{

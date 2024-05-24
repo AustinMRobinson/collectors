@@ -22,6 +22,8 @@ import { detailImages, images } from "@/constants/Images";
 import Divider from "../Divider";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import formatPrice from "@/utils/formatPrice";
+import Chart from "../Chart";
 
 export type Ref = BottomSheetModal;
 interface Props {
@@ -37,7 +39,17 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
   const snapPoints = useMemo(() => ["92.5%", "92.5%"], []);
 
   // destructure data
-  const { image, grade, title, price, change } = props.item;
+  const {
+    image,
+    grade,
+    title,
+    game,
+    price,
+    change,
+    estimates,
+    history,
+    collectors,
+  } = props.item;
 
   // callbacks
   const { dismiss } = useBottomSheetModal();
@@ -73,19 +85,24 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
       }}
       backdropComponent={renderBackdrop}
     >
-      <SheetHeader leadingPress={onShare} trailingPress={() => dismiss()} />
+      <SheetHeader
+        leadingPress={() =>
+          onShare({ title: game + " " + title, message: formatPrice(price) })
+        }
+        trailingPress={() => dismiss()}
+      />
       <BottomSheetScrollView contentContainerStyle={{ paddingBottom: 48 }}>
-        <Overview image={detailImages[image]} title={title} />
+        <Overview image={detailImages[image]} title={title} game={game} />
         <Estimate />
         <Divider />
         <Section title="Sales History" action="Show 45 more sales">
-          {[0, 1, 2, 3].map((item) => (
+          {history.map((sale) => (
             <ListItem
-              key={item}
+              key={sale.price}
               image={require("@/assets/images/icon.png")}
-              title="Auction"
-              caption="Feb 13, 2024"
-              trailing="$44.00"
+              title={sale.type}
+              caption={sale.date}
+              trailing={formatPrice(sale.price)}
             />
           ))}
         </Section>
@@ -98,6 +115,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
               source={require("@/assets/images/chart.png")}
               style={{ width: "100%", height: "auto", aspectRatio: 1.53 }}
             ></Image>
+            <Chart />
           </View>
           <ScrollView
             horizontal
@@ -133,6 +151,7 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
                 <ThemedText
                   type="captionLabel"
                   color={range === item ? "primary" : "secondary"}
+                  style={{ marginTop: 2 }}
                 >
                   {item}
                 </ThemedText>
@@ -157,9 +176,9 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
               alignItems: "center",
             }}
           >
-            {[0, 1, 2, 3, 4, 5].map((item) => (
+            {collectors.map((collector) => (
               <TouchableOpacity
-                key={item}
+                key={collector.name}
                 style={{ display: "flex", gap: 8, alignItems: "center" }}
               >
                 <Image
@@ -167,8 +186,8 @@ const Sheet = forwardRef<Ref, Props>((props, ref) => {
                   style={{ width: 72, height: 72 }}
                 />
                 <View style={{ display: "flex", alignItems: "center" }}>
-                  <ThemedText type="bodyLabel">Steph</ThemedText>
-                  <ThemedText type="caption">PSA 9</ThemedText>
+                  <ThemedText type="bodyLabel">{collector.name}</ThemedText>
+                  <ThemedText type="caption">{collector.grade}</ThemedText>
                 </View>
               </TouchableOpacity>
             ))}

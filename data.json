@@ -1,38 +1,529 @@
 [
   {
-    "title": "1999 Pokemon Game 1st Edition Charizard - Holo #4",
+    "title": "Charizard - Holo #4",
+    "game": "1999 Pokemon Game 1st Edition",
     "price": 3565.17,
     "change": 0.265,
-    "image": "image_1"
+    "image": "image_1",
+    "estimate": [
+      {
+        "grade": "Ungraded",
+        "price": 3565.9,
+        "population": 1430
+      },
+      {
+        "grade": "PSA 10",
+        "price": 319999,
+        "population": 124
+      },
+      {
+        "grade": "PSA 9",
+        "price": 17500,
+        "population": 124
+      },
+      {
+        "grade": "PSA 8",
+        "price": 7592.69,
+        "population": 648
+      },
+      {
+        "grade": "PSA 7",
+        "price": 6500.0,
+        "population": 516
+      },
+      {
+        "grade": "PSA 6",
+        "price": 5650.0,
+        "population": 705
+      }
+    ],
+    "history": [
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 44.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 11, 2024",
+        "price": 63.0
+      },
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 52.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 13, 2024",
+        "price": 21.0
+      }
+    ],
+    "collectors": [
+      {
+        "name": "Steph",
+        "grade": "PSA 9"
+      },
+      {
+        "name": "Kristina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Harry",
+        "grade": "PSA 4"
+      },
+      {
+        "name": "Lionel",
+        "grade": "Raw"
+      },
+      {
+        "name": "Annina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Tarra",
+        "grade": "PSA 7"
+      }
+    ]
   },
   {
-    "title": "1999 Pokemon Game 1st Edition Mewtwo #10",
+    "title": "Mewtwo #10",
+    "game": "1999 Pokemon Game 1st Edition",
+
     "price": 293.99,
     "change": -0.027,
-    "image": "image_2"
+    "image": "image_2",
+    "estimate": [
+      {
+        "grade": "Ungraded",
+        "price": 3565.9,
+        "population": 1430
+      },
+      {
+        "grade": "PSA 10",
+        "price": 319999,
+        "population": 124
+      },
+      {
+        "grade": "PSA 9",
+        "price": 17500,
+        "population": 124
+      },
+      {
+        "grade": "PSA 8",
+        "price": 7592.69,
+        "population": 648
+      },
+      {
+        "grade": "PSA 7",
+        "price": 6500.0,
+        "population": 516
+      },
+      {
+        "grade": "PSA 6",
+        "price": 5650.0,
+        "population": 705
+      }
+    ],
+    "history": [
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 44.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 11, 2024",
+        "price": 63.0
+      },
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 52.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 13, 2024",
+        "price": 21.0
+      }
+    ],
+    "collectors": [
+      {
+        "name": "Steph",
+        "grade": "PSA 9"
+      },
+      {
+        "name": "Kristina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Harry",
+        "grade": "PSA 4"
+      },
+      {
+        "name": "Lionel",
+        "grade": "Raw"
+      },
+      {
+        "name": "Annina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Tarra",
+        "grade": "PSA 7"
+      }
+    ]
   },
   {
-    "title": "1999 Pokemon Game 1st Edition Pikachu #10",
+    "title": "Pikachu #10",
+    "game": "1999 Pokemon Game 1st Edition",
+
     "price": 3565.17,
     "change": -0.021,
-    "image": "image_3"
+    "image": "image_3",
+    "estimate": [
+      {
+        "grade": "Ungraded",
+        "price": 3565.9,
+        "population": 1430
+      },
+      {
+        "grade": "PSA 10",
+        "price": 319999,
+        "population": 124
+      },
+      {
+        "grade": "PSA 9",
+        "price": 17500,
+        "population": 124
+      },
+      {
+        "grade": "PSA 8",
+        "price": 7592.69,
+        "population": 648
+      },
+      {
+        "grade": "PSA 7",
+        "price": 6500.0,
+        "population": 516
+      },
+      {
+        "grade": "PSA 6",
+        "price": 5650.0,
+        "population": 705
+      }
+    ],
+    "history": [
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 44.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 11, 2024",
+        "price": 63.0
+      },
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 52.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 13, 2024",
+        "price": 21.0
+      }
+    ],
+    "collectors": [
+      {
+        "name": "Steph",
+        "grade": "PSA 9"
+      },
+      {
+        "name": "Kristina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Harry",
+        "grade": "PSA 4"
+      },
+      {
+        "name": "Lionel",
+        "grade": "Raw"
+      },
+      {
+        "name": "Annina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Tarra",
+        "grade": "PSA 7"
+      }
+    ]
   },
   {
-    "title": "1999 Pokemon Game 1st Edition Blastoise #2",
+    "title": "Blastoise #2",
+    "game": "1999 Pokemon Game 1st Edition",
+
     "price": 531.7,
     "change": 0.072,
-    "image": "image_4"
+    "image": "image_4",
+    "estimate": [
+      {
+        "grade": "Ungraded",
+        "price": 3565.9,
+        "population": 1430
+      },
+      {
+        "grade": "PSA 10",
+        "price": 319999,
+        "population": 124
+      },
+      {
+        "grade": "PSA 9",
+        "price": 17500,
+        "population": 124
+      },
+      {
+        "grade": "PSA 8",
+        "price": 7592.69,
+        "population": 648
+      },
+      {
+        "grade": "PSA 7",
+        "price": 6500.0,
+        "population": 516
+      },
+      {
+        "grade": "PSA 6",
+        "price": 5650.0,
+        "population": 705
+      }
+    ],
+    "history": [
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 44.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 11, 2024",
+        "price": 63.0
+      },
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 52.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 13, 2024",
+        "price": 21.0
+      }
+    ],
+    "collectors": [
+      {
+        "name": "Steph",
+        "grade": "PSA 9"
+      },
+      {
+        "name": "Kristina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Harry",
+        "grade": "PSA 4"
+      },
+      {
+        "name": "Lionel",
+        "grade": "Raw"
+      },
+      {
+        "name": "Annina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Tarra",
+        "grade": "PSA 7"
+      }
+    ]
   },
   {
-    "title": "1999 Pokemon Game 1st Edition Charizard - Holo #5",
+    "title": "Charizard - Holo #5",
+    "game": "1999 Pokemon Game 1st Edition",
+
     "price": 3565.17,
     "change": 0.265,
-    "image": "image_1"
+    "image": "image_1",
+    "estimate": [
+      {
+        "grade": "Ungraded",
+        "price": 3565.9,
+        "population": 1430
+      },
+      {
+        "grade": "PSA 10",
+        "price": 319999,
+        "population": 124
+      },
+      {
+        "grade": "PSA 9",
+        "price": 17500,
+        "population": 124
+      },
+      {
+        "grade": "PSA 8",
+        "price": 7592.69,
+        "population": 648
+      },
+      {
+        "grade": "PSA 7",
+        "price": 6500.0,
+        "population": 516
+      },
+      {
+        "grade": "PSA 6",
+        "price": 5650.0,
+        "population": 705
+      }
+    ],
+    "history": [
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 44.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 11, 2024",
+        "price": 63.0
+      },
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 52.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 13, 2024",
+        "price": 21.0
+      }
+    ],
+    "collectors": [
+      {
+        "name": "Steph",
+        "grade": "PSA 9"
+      },
+      {
+        "name": "Kristina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Harry",
+        "grade": "PSA 4"
+      },
+      {
+        "name": "Lionel",
+        "grade": "Raw"
+      },
+      {
+        "name": "Annina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Tarra",
+        "grade": "PSA 7"
+      }
+    ]
   },
   {
-    "title": "1999 Pokemon Game 1st Edition Mewtwo #11",
+    "title": "Mewtwo #11",
+    "game": "1999 Pokemon Game 1st Edition",
+
     "price": 293.99,
     "change": -0.027,
-    "image": "image_2"
+    "image": "image_2",
+    "estimate": [
+      {
+        "grade": "Ungraded",
+        "price": 3565.9,
+        "population": 1430
+      },
+      {
+        "grade": "PSA 10",
+        "price": 319999,
+        "population": 124
+      },
+      {
+        "grade": "PSA 9",
+        "price": 17500,
+        "population": 124
+      },
+      {
+        "grade": "PSA 8",
+        "price": 7592.69,
+        "population": 648
+      },
+      {
+        "grade": "PSA 7",
+        "price": 6500.0,
+        "population": 516
+      },
+      {
+        "grade": "PSA 6",
+        "price": 5650.0,
+        "population": 705
+      }
+    ],
+    "history": [
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 44.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 11, 2024",
+        "price": 63.0
+      },
+      {
+        "type": "Auction",
+        "date": "Feb 13, 2024",
+        "price": 52.0
+      },
+      {
+        "type": "Buy it now",
+        "date": "Feb 13, 2024",
+        "price": 21.0
+      }
+    ],
+    "collectors": [
+      {
+        "name": "Steph",
+        "grade": "PSA 9"
+      },
+      {
+        "name": "Kristina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Harry",
+        "grade": "PSA 4"
+      },
+      {
+        "name": "Lionel",
+        "grade": "Raw"
+      },
+      {
+        "name": "Annina",
+        "grade": "Raw"
+      },
+      {
+        "name": "Tarra",
+        "grade": "PSA 7"
+      }
+    ]
   }
 ]

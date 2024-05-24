@@ -12,6 +12,8 @@ import { setStatusBarStyle } from "expo-status-bar";
 import Icon from "../Icon/Icon";
 import { IconRegistry } from "@/types";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
+import React from "react";
+import { useScrollToTop } from "@react-navigation/native";
 
 interface HeaderButtonProps {
   image?: ImageSourcePropType;
@@ -36,6 +38,7 @@ function HeaderButton({ image, icon }: HeaderButtonProps) {
 interface HeaderProps {
   title: string;
   tabs: boolean;
+  scrollRef?: any;
 }
 
 export const Tabs = [
@@ -45,7 +48,7 @@ export const Tabs = [
   { title: "Sold", active: false },
 ];
 
-export default function Header({ title, tabs }: HeaderProps) {
+export default function Header({ title, tabs, scrollRef }: HeaderProps) {
   const insets = useSafeAreaInsets();
   setStatusBarStyle("light");
   const { theme } = useStyles();
@@ -63,7 +66,12 @@ export default function Header({ title, tabs }: HeaderProps) {
         <View style={styles.buttonWrapper}>
           <HeaderButton image={require("@/assets/images/profile.png")} />
         </View>
-        <ThemedText style={styles.headerTitle}>{title ?? title}</ThemedText>
+        <TouchableOpacity
+          style={{ flexGrow: 1 }}
+          onPress={() => useScrollToTop(scrollRef)}
+        >
+          <ThemedText style={styles.headerTitle}>{title ?? title}</ThemedText>
+        </TouchableOpacity>
         <View style={styles.buttonWrapper}>
           <HeaderButton icon="search" />
         </View>
@@ -79,6 +87,7 @@ export default function Header({ title, tabs }: HeaderProps) {
                 type="captionLabel"
                 style={{
                   color: tab.active ? theme.colors.primary : theme.colors.white,
+                  marginTop: 2,
                 }}
               >
                 {tab.title}
@@ -94,7 +103,6 @@ export default function Header({ title, tabs }: HeaderProps) {
 const stylesheet = createStyleSheet((theme) => ({
   headerButton: {},
   headerTitle: {
-    flexGrow: 1,
     fontFamily: "Area-Normal-Black",
     lineHeight: 32,
     fontSize: 22,

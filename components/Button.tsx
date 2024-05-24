@@ -34,6 +34,7 @@ export function Button({
       <ThemedText
         type="bodyLabel"
         color={variant === "primary" ? "invert" : "primary"}
+        style={{ marginTop: 2 }}
       >
         {children}
       </ThemedText>

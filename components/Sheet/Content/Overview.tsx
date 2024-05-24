@@ -1,11 +1,11 @@
 import { ThemedText } from "@/components/ThemedText";
-import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
+import { Image, ImageSourcePropType, View } from "react-native";
 import { createStyleSheet, useStyles } from "react-native-unistyles";
 
 interface OverviewProps {
   image: ImageSourcePropType;
   title: string;
-  game?: string;
+  game: string;
 }
 
 export default function Overview({ image, title, game }: OverviewProps) {
@@ -43,12 +43,13 @@ export default function Overview({ image, title, game }: OverviewProps) {
         >
           {title}
         </ThemedText>
+
         <ThemedText
           type="bodyLabel"
           color="tertiary"
           style={{ textAlign: "center" }}
         >
-          1999 Pokemon Game 1st Edition
+          {game}
         </ThemedText>
       </View>
     </View>
