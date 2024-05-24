@@ -1,5 +1,18 @@
 # Collectors Challenge
 
+![Walkthrough video](https://drive.google.com/file/d/1W6LlvZ2y3hz2AEeFq84HaOiPKsLYHuUJ/view?usp=sharing)
+![collectors-challenge-preview](https://github.com/AustinMRobinson/collectors/assets/20391648/0b5342a9-4905-4533-b84a-b889c9fbe29f)
+
+## Overview
+
+This was a design engineer challenge from [Collectors](https://collectors.com/). I was given one week to complete the challenge (see below). I took ~2.5 days and 5-6 hours to create this, following my to do list below.
+
+### Resources
+
+- [Brief](/misc/collectors-challenge.pdf)
+- [Figma file](https://www.figma.com/design/6DhZC4ZcMMlIlcyrHpb3zv/Design-Engineering-Challenge?node-id=0%3A1&t=Z31hdcXTWto3mpZ1-1) Password: challenge2024
+- [Font](https://befonts.com/area-font-family.html)
+
 ## To Do
 
 ### Day 1 (3 hrs)
@@ -19,12 +32,6 @@
 - [x] Real chart
 - [ ] 3D card
 - [ ] Skeleton loading
-
-## File
-
-- [Brief](/misc/collectors-challenge.pdf)
-- [Figma file](https://www.figma.com/design/6DhZC4ZcMMlIlcyrHpb3zv/Design-Engineering-Challenge?node-id=0%3A1&t=Z31hdcXTWto3mpZ1-1) Password: challenge2024
-- [Font](https://befonts.com/area-font-family.html)
 
 ## Framework Info
 
